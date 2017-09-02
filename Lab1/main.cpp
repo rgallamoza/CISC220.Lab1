@@ -20,6 +20,7 @@ bool isPrime(int x);
 int sumBtw(int x, int y);
 void leapYr400(int yr);
 void numTriangle(int x);
+void printArmstrong(int x);
 
 // Problem 1, and test calls for future problems
 int main(){
@@ -49,6 +50,7 @@ int main(){
 
 	cout << "*************************" << endl;
 	cout << "Problem 6" << endl;
+	printArmstrong(10000); // Expected: 1, 2, 3, 4, 5, 6, 7, 8, 9, 153, 370, 371, 407, 1634, 8208, 9474
 
 	cout << "*************************" << endl;
 	cout << "Problem 7" << endl;
@@ -82,8 +84,7 @@ bool isPrime(int x){
 
 //Problem 3
 int sumBtw(int x, int y){
-	int sum = 0;
-	int num = 0;
+	int sum = 0, num;
 	if(x>y){
 		num = ++y;
 		while(num<x){
@@ -122,10 +123,7 @@ void leapYr400(int yr){
 
 //Problem 5
 void numTriangle(int x){
-	int row = 1;
-	int spaces;
-	int spacesBtw;
-	int numCount;
+	int row = 1, spaces, spacesBtw, numCount;
 	while(row <= x){
 		spaces = x - row;
 		if(row==1){
@@ -159,4 +157,34 @@ void numTriangle(int x){
 		row++;
 	}
 }
+
+//Problem 6
+void printArmstrong(int x){
+	int length, digit, digitPow, num, sum;
+	if(x >= 1){
+		for(int i=1;i<=x;i++){
+			length = 0, sum = 0, num = i;
+			while(num != 0){
+				num /= 10;
+				length++;
+			}
+			num = i;
+			while(num!=0){
+				digit = num%10;
+				digitPow = digit;
+				for(int j=0;j<(length-1);j++){
+					digitPow *= digit;
+				}
+				sum += digitPow;
+				num /= 10;
+			}
+			if(sum==i){
+				cout << i << endl;
+			}
+		}
+	}
+}
+
+
+
 

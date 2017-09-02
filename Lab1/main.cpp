@@ -18,7 +18,7 @@ using namespace std;
 
 bool isPrime(int x);
 int sumBtw(int x, int y);
-void nxtLeap400(int start);
+void leapYr400(int yr);
 
 // Problem 1, and test calls for future problems
 int main(){
@@ -33,12 +33,13 @@ int main(){
 
 	cout << "*****" << endl;
 	cout << "Problem 3" << endl;
-	cout << sumBtw(1,5) << endl; // Expected: 9
-	cout << sumBtw(5,1) << endl; // Expected: 9
+	cout << sumBtw(1,10) << endl; // Expected: 44
+	cout << sumBtw(10,1) << endl; // Expected: 44
 	cout << sumBtw(2,2) << endl; // Expected: 0
 
 	cout << "*****" << endl;
 	cout << "Problem 4" << endl;
+	leapYr400(2017); // Expected: 2020 to 2416 in increments of 4, excluding 2100, 2200, 2300
 
 	cout << "*****" << endl;
 	cout << "Problem 5" << endl;
@@ -99,8 +100,23 @@ int sumBtw(int x, int y){
 }
 
 //Problem 4
+void leapYr400(int yr){
+	int endYr = yr + 400;
+	while(yr <= endYr){
+		if(yr % 4 == 0){
+			if(yr % 100 == 0){
+				if(yr % 400 == 0){
+					cout << yr << endl;
+				}
+			}
+			else{
+				cout << yr << endl;
+			}
+		}
+		yr++;
+	}
+}
 
-
-
+//Problem 5
 
 

@@ -72,15 +72,15 @@ int main(){
 
 	cout << "*************************" << endl;
 	cout << "Problem 2" << endl;
-	cout << "Test 1:" << endl << isPrime(2) << endl; // Expected: true (1)
-	cout << "Test 2:" << endl << isPrime(1) << endl; // Expected: false (0)
-	cout << "Test 3:" << endl << isPrime(29) << endl; // Expected: true (1)
+	cout << "Test 1:" << endl << isPrime(2) << endl; // Expected: True(1) returned
+	cout << "Test 2:" << endl << isPrime(1) << endl; // Expected: False(0) returned
+	cout << "Test 3:" << endl << isPrime(29) << endl; // Expected: True(1) returned
 
 	cout << "*************************" << endl;
 	cout << "Problem 3" << endl;
-	cout << "Test 1:" << endl << sumBtw(1,10) << endl; // Expected: 45
-	cout << "Test 2:" << endl << sumBtw(10,1) << endl; // Expected: 45
-	cout << "Test 3:" << endl << sumBtw(2,2) << endl; // Expected: 0
+	cout << "Test 1:" << endl << sumBtw(1,10) << endl; // Expected: 45 returned
+	cout << "Test 2:" << endl << sumBtw(10,1) << endl; // Expected: 45 returned
+	cout << "Test 3:" << endl << sumBtw(2,2) << endl; // Expected: 0 returned
 
 	cout << "*************************" << endl;
 	cout << "Problem 4" << endl;
@@ -94,16 +94,16 @@ int main(){
 	cout << "Test 2:" << endl;
 	numTriangle(5); // Expected: Print triangle of 5 rows
 	cout << "Test 1:" << endl;
-	numTriangle(1); // Expected: Single 1 character
+	numTriangle(1); // Expected: Single 1 printed
 
 	cout << "*************************" << endl;
 	cout << "Problem 6" << endl;
 	cout << "Test 1:" << endl;
-	cout << printArmstrong(10000) << endl; // Expected: 1, 2, 3, 4, 5, 6, 7, 8, 9, 153, 370, 371, 407, 1634, 8208, 9474 to be printed, 16 to be returned at end
+	cout << printArmstrong(10000) << endl; // Expected: 1-9, 153, 370, 371, 407, 1634, 8208, 9474 printed, 16 returned
 	cout << "Test 2:" << endl;
-	cout << printArmstrong(1) << endl; // Expected: 1 to be printed, 1 to be returned at end
+	cout << printArmstrong(1) << endl; // Expected: 1 printed, 1 returned
 	cout << "Test 3:" << endl;
-	cout << printArmstrong(0) << endl; // Expected: Nothing to be printed, 0 to be returned at end
+	cout << printArmstrong(0) << endl; // Expected: Nothing printed, 0 returned
 
 	cout << "*************************" << endl;
 	cout << "Problem 7" << endl;
@@ -111,11 +111,11 @@ int main(){
 	int array2[2] = {-2, 2};
 	int array3[5] = {-10, -10000, 222222, 222222, 1};
 	cout << "Test 1:" << endl;
-	cout << maxNum(array1,5) << endl; // Expected: 5
+	cout << maxNum(array1,5) << endl; // Expected: 5 returned
 	cout << "Test 2:" << endl;
-	cout << maxNum(array2,2) << endl; // Expected: 2
+	cout << maxNum(array2,2) << endl; // Expected: 2 returned
 	cout << "Test 3:" << endl;
-	cout << maxNum(array3,5) << endl; // Expected: 222222
+	cout << maxNum(array3,5) << endl; // Expected: 222222 returned
 
 	cout << "*************************" << endl;
 	cout << "Problem 8" << endl;
@@ -123,11 +123,11 @@ int main(){
 	int array5[6] = {5, 3, 2, 2, 3, 5};
 	int array6[5] = {5, 4, 3, 3, 5};
 	cout << "Test 1:" << endl;
-	cout << isPalindrome(array4,3) << endl; // Expected: True(1)
+	cout << isPalindrome(array4,3) << endl; // Expected: True(1) returned
 	cout << "Test 2:" << endl;
-	cout << isPalindrome(array5,6) << endl; // Expected: True(1)
+	cout << isPalindrome(array5,6) << endl; // Expected: True(1) returned
 	cout << "Test 3:" << endl;
-	cout << isPalindrome(array6,5) << endl; // Expected: False(0)
+	cout << isPalindrome(array6,5) << endl; // Expected: False(0) returned
 
 	cout << "*************************" << endl;
 	cout << "Problem 9" << endl;
@@ -135,11 +135,11 @@ int main(){
 	int array8[3] = {3, 100, 2};
 	int array9[4] = {0, 1, 0, 1};
 	cout << "Test 1:" << endl;
-	cout << concatenateList(array7,5) << endl; // Expected: 32714
+	cout << concatenateList(array7,5) << endl; // Expected: 32714 returned
 	cout << "Test 2:" << endl;
-	cout << concatenateList(array8,3) << endl; // Expected: 31002
+	cout << concatenateList(array8,3) << endl; // Expected: 31002 returned
 	cout << "Test 3:" << endl;
-	cout << concatenateList(array9,4) << endl; // Expected: 101
+	cout << concatenateList(array9,4) << endl; // Expected: 101 returned
 
 	return 0;
 }
@@ -149,7 +149,7 @@ bool isPrime(int x){
 	bool a = true;
 	int divisor = 2;
 	if(x>1){
-		while(divisor < x && a){
+		while((divisor < x) && a){
 				if (x % divisor == 0){
 					a = false;
 				}
@@ -245,17 +245,16 @@ int printArmstrong(int x){
 	if(x >= 1){
 		for(int i=1;i<=x;i++){
 			length = 0, sum = 0, num = i;
+			// Find number of digits
 			while(num != 0){
 				num /= 10;
 				length++;
 			}
 			num = i;
+			// Isolate digit, exponentiate by length, add to sum
 			while(num!=0){
 				digit = num%10;
-				digitPow = digit;
-				for(int j=0;j<(length-1);j++){
-					digitPow *= digit;
-				}
+				digitPow = ((int)(pow(digit,length)+.5));
 				sum += digitPow;
 				num /= 10;
 			}
@@ -300,9 +299,11 @@ bool isPalindrome(int a[], int size){
 int concatenateList(int a[], int size){
 	int result = 0, power = 1;
 	for(int i=0;i<size;i++,power=1){
+		// Determine how many digits the integer has
 		while((a[i]/((int)(pow(10,power)+.5))) != 0){
 			power++;
 		}
+		// Multiply current result by 10, 100, etc. to add integer
 		result = (result*((int)(pow(10,power)+.5)))+a[i];
 	}
 	return result;

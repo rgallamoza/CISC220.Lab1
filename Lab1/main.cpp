@@ -86,6 +86,10 @@ int main(){
 	cout << "Problem 4" << endl;
 	cout << "Test 1:" << endl;
 	leapYr400(2017); // Expected: Print 2020 to 2416 in increments of 4, excluding 2100, 2200, 2300
+	cout << "Test 2:" << endl;
+	leapYr400(1); // Expected: Print 4 to 400 in increments of 4, excluding 100, 200, 300
+	cout << "Test 3:" << endl;
+	leapYr400(4); // Expected: Print 4 to 404 in increments of 4, excluding 100, 200, 300
 
 	cout << "*************************" << endl;
 	cout << "Problem 5" << endl;

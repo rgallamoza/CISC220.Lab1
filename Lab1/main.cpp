@@ -26,8 +26,8 @@ bool isPrime(int x);
 int sumBtw(int x, int y);
 /* Returns the sum of each integer between two given integers. Given integers
  * are excluded from the sum.
- * Arguments: x: Any integer value to be evaluated.
- * 			  y: Any integer value to be evaluated.
+ * Arguments: x: An integer value to be evaluated.
+ * 			  y: An integer value to be evaluated.
  */
 
 void leapYr400(int yr);
@@ -307,8 +307,4 @@ int concatenateList(int a[], int size){
 	}
 	return result;
 }
-
-
-
-
 

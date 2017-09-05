@@ -7,14 +7,15 @@
 
 /*
  * Ryan Gallamoza
- * TA's name
+ * TA: Eeshita Biswas
  * 8/31/2017
  * Lab 1
+ * This file contains the functions for each problem in Lab 1
  */
 
 #include <iostream>
-#include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 using namespace std;
 
 bool isPrime(int x);
@@ -46,19 +47,22 @@ int printArmstrong(int x);
  * Arguments: x: Integer value to stop searching at.
  */
 
-int maxNum(int a[]);
+int maxNum(int a[], int size);
 /* Returns the largest value in an array of numbers.
  * Arguments: a[]: Array of integers to be evaluated.
+ * 			  size: Length of the given array.
  */
 
-bool isPalindrome(int a[]);
+bool isPalindrome(int a[], int size);
 /* Returns a boolean value based on whether the given array is a palindrome.
  * Arguments: a[]: Array of integers to be evaluated.
+ * 			  size: Length of the given array.
  */
 
-int concatenateList(int a[]);
+int concatenateList(int a[], int size);
 /* Concatenates a list of integers to return a single integer.
  * Arguments: a[]: Array of integers to be evaluated.
+ * 			  size: Length of the given array.
  */
 
 // Problem 1, and test calls for future problems
@@ -74,20 +78,21 @@ int main(){
 
 	cout << "*************************" << endl;
 	cout << "Problem 3" << endl;
-	cout << "Test 1:" << endl << sumBtw(1,10) << endl; // Expected: 44
-	cout << "Test 2:" << endl << sumBtw(10,1) << endl; // Expected: 44
+	cout << "Test 1:" << endl << sumBtw(1,10) << endl; // Expected: 45
+	cout << "Test 2:" << endl << sumBtw(10,1) << endl; // Expected: 45
 	cout << "Test 3:" << endl << sumBtw(2,2) << endl; // Expected: 0
 
 	cout << "*************************" << endl;
 	cout << "Problem 4" << endl;
-	leapYr400(2017); // Expected: 2020 to 2416 in increments of 4, excluding 2100, 2200, 2300
+	cout << "Test 1:" << endl;
+	leapYr400(2017); // Expected: Print 2020 to 2416 in increments of 4, excluding 2100, 2200, 2300
 
 	cout << "*************************" << endl;
 	cout << "Problem 5" << endl;
 	cout << "Test 1:" << endl;
-	numTriangle(4); // Expected: refer to lab instructions, problem 5
+	numTriangle(4); // Expected: Print triangle of 4 rows
 	cout << "Test 2:" << endl;
-	numTriangle(5); // Expected: refer to lab instructions, problem 5
+	numTriangle(5); // Expected: Print triangle of 5 rows
 	cout << "Test 1:" << endl;
 	numTriangle(1); // Expected: Single 1 character
 
@@ -104,19 +109,38 @@ int main(){
 	cout << "Problem 7" << endl;
 	int array1[5] = {1, 2, 3, 4, 5};
 	int array2[2] = {-2, 2};
-	int array3[5] = {-10, -10000, 345, 222222, 1};
+	int array3[5] = {-10, -10000, 222222, 222222, 1};
 	cout << "Test 1:" << endl;
-	cout << maxNum((&array1)[5]) << endl;
+	cout << maxNum(array1,5) << endl; // Expected: 5
 	cout << "Test 2:" << endl;
-	cout << maxNum((&array2)[2]) << endl;
+	cout << maxNum(array2,2) << endl; // Expected: 2
 	cout << "Test 3:" << endl;
-	cout << maxNum((&array3)[5]) << endl;
+	cout << maxNum(array3,5) << endl; // Expected: 222222
 
 	cout << "*************************" << endl;
 	cout << "Problem 8" << endl;
+	int array4[3] = {1, 2, 1};
+	int array5[6] = {5, 3, 2, 2, 3, 5};
+	int array6[5] = {5, 4, 3, 3, 5};
+	cout << "Test 1:" << endl;
+	cout << isPalindrome(array4,3) << endl; // Expected: True(1)
+	cout << "Test 2:" << endl;
+	cout << isPalindrome(array5,6) << endl; // Expected: True(1)
+	cout << "Test 3:" << endl;
+	cout << isPalindrome(array6,5) << endl; // Expected: False(0)
 
 	cout << "*************************" << endl;
 	cout << "Problem 9" << endl;
+	int array7[5] = {3, 2, 7, 1, 4};
+	int array8[3] = {3, 100, 2};
+	int array9[4] = {0, 1, 0, 1};
+	cout << "Test 1:" << endl;
+	cout << concatenateList(array7,5) << endl; // Expected: 32714
+	cout << "Test 2:" << endl;
+	cout << concatenateList(array8,3) << endl; // Expected: 31002
+	cout << "Test 3:" << endl;
+	cout << concatenateList(array9,4) << endl; // Expected: 101
+
 	return 0;
 }
 
@@ -143,14 +167,14 @@ bool isPrime(int x){
 int sumBtw(int x, int y){
 	int sum = 0, num;
 	if(x>y){
-		num = ++y;
+		num = y;
 		while(num<x){
 			sum += num;
 			num++;
 		}
 	}
 	else if(y>x){
-		num = ++x;
+		num = x;
 		while(num<y){
 			sum += num;
 			num++;
@@ -245,16 +269,46 @@ int printArmstrong(int x){
 }
 
 //Problem 7
-int maxNum(int a[]){
-	int size = sizeof(a)/sizeof(a[0]);
+int maxNum(int a[], int size){
 	int max = a[0];
-	cout << size << endl;
-	for(int i=1;i<=size;i++){
+	for(int i=1;i<size;i++){
 		if(a[i]>max){
 			max = a[i];
 		}
 	}
 	return max;
 }
+
+//Problem 8
+bool isPalindrome(int a[], int size){
+	bool p = true;
+	if(size == 0){
+		p = false;
+	}
+	else{
+		for(int i=0;i<(size/2);i++){
+			if(a[i] != a[size-(i+1)]){
+				p = false;
+			}
+		}
+	}
+
+	return p;
+}
+
+//Problem 9
+int concatenateList(int a[], int size){
+	int result = 0, power = 1;
+	for(int i=0;i<size;i++,power=1){
+		while((a[i]/((int)(pow(10,power)+.5))) != 0){
+			power++;
+		}
+		result = (result*((int)(pow(10,power)+.5)))+a[i];
+	}
+	return result;
+}
+
+
+
 
 
